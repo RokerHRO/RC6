@@ -132,7 +132,7 @@ void RC6::key_schedule(const std::string& key){
   }
 
   unsigned int A = 0, B = 0, i = 0, j = 0;
-  int v = 3 * std::max(c, (2 * r + 4));
+  const int v = 3 * std::max(c, (2 * r + 4));
   for(int s = 1; s <= v; s++){
     A = S[i] = left_rot((S[i] + A + B) % modulo, 3, w);
     B = L[j] = left_rot((L[j] + A + B) % modulo, (A + B), w);

@@ -90,7 +90,7 @@ bool parseRC6Textfile(std::istream& file, std::string& mode,
  * Description: Determines b for the RC6-w/r/b cryptography.
  *              It outputs the length of the encryption key in bytes
  ******************************************************************/
-void remove_whitespace(std::string &str){
+void remove_whitespace(std::string& str){
   str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
 }
 
@@ -101,7 +101,7 @@ void remove_whitespace(std::string &str){
  * Description: Determines b for the RC6-w/r/b cryptography.
  *              It outputs the length of the encryption key in bytes
  ******************************************************************/
-unsigned int keylength(std::string key){
+unsigned int keylength(const std::string& key){
   return key.length() / 2;
 }
 
