@@ -1,6 +1,6 @@
 # Configurations
-PROJECT	=	run
-CC	=	g++
+PROJECT	=	run test_rc6
+CXX =	g++
 FLAGS	=	-g
 WFLAGS	=	-Wall -Wextra
 OPTIMIZATION =	-O2
@@ -12,18 +12,21 @@ DRIVER	=	RC6_main.cpp
 # Build
 all:		$(PROJECT)
 
-$(PROJECT):	$(OBJ) $(DRIVER)
-		$(CC) $(FLAGS) $^ -o $@
+run:	$(OBJ) $(DRIVER)
+		$(CXX) $(FLAGS) $^ -o $@
+
+test_rc6: test_rc6.o RC6.o
+		$(CXX) $(FLAGS) -o $@ $^
 
 warning-enbl:	$(OBJ) $(DRIVER)
-		$(CC) $(FLAGS) $(WFLAGS) $^ -o $@
+		$(CXX) $(FLAGS) $(WFLAGS) $^ -o $@
 
 optimizations:	$(OBJ) $(DRIVER)
-		$(CC) $(FLAGS) $(OPTIMIZATION) $^ -o $@
+		$(CXX) $(FLAGS) $(OPTIMIZATION) $^ -o $@
 
 # Build object files
 %.o:		%.c
-		$(CC) $(FLAGS) -c $^
+		$(CXX) $(FLAGS) -c $^
 
 # Clean up
 clean:
