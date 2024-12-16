@@ -20,6 +20,17 @@ void remove_whitespace(std::string& str){
   str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
 }
 
+void to_upper_ascii(std::string& str)
+{
+	for(char& c : str)
+	{
+		if(c>='a' && c<='z')
+		{
+			c -= 32;
+		}
+	}
+}
+
 /******************************************************************
  * Function: keyLength
  * Input: <std::string> key
@@ -56,7 +67,10 @@ int main(int argc, char *argv[]){
   const std::string ciphertext(argv[3]);
 
   RC6 rc6 = RC6(RC6_W, RC6_R, keylength(key));
-  const std::string result = rc6.run("Encryption", plaintext, key);
+  std::string result = rc6.run("Encryption", key, plaintext);
+  remove_whitespace(result);
+  to_upper_ascii(result);
+  
   if(result != ciphertext)
   {
      std::cerr << "Encrytpion failed.!\n"
